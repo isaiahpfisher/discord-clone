@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
-import { absoluteUrl } from "@/lib/utils";
 
 interface InviteCodePageProps {
   params: {
@@ -19,9 +18,7 @@ const InviteCodePage = async ({ params }: InviteCodePageProps) => {
   }
 
   if (!profile) {
-    return redirectToSignIn({
-      returnBackUrl: absoluteUrl(`/invite/${params.inviteCode}`),
-    });
+    return redirect("/sign-in");
   }
 
   const existingServer = await db.server.findFirst({
