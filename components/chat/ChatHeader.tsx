@@ -1,8 +1,7 @@
 import { Hash } from "lucide-react";
 import { MobileToggle } from "../MobileTogle";
 import { UserAvatar } from "../UserAvatar";
-
-// import { SocketIndicator } from "@/components/socket-indicator";
+import { SocketIndicator } from "../SocketIndicator";
 
 // import { ChatVideoButton } from "./chat-video-button";
 
@@ -29,10 +28,10 @@ export const ChatHeader = ({
         <UserAvatar src={imageUrl} className="mr-2 h-8 w-8 md:h-8 md:w-8" />
       )}
       <p className="text-md font-semibold text-black dark:text-white">{name}</p>
-      {/* <div className="ml-auto flex items-center">
-        {type === "conversation" && <ChatVideoButton />}
+      <div className="ml-auto flex items-center">
+        {/* {type === "conversation" && <ChatVideoButton />} */}
         <SocketIndicator />
-      </div> */}
+      </div>
     </div>
   );
 };

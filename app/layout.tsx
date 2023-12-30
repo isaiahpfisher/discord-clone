@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { ModalProvider } from "@/components/providers/ModalProvider";
+import { SocketProvider } from "@/components/providers/SocketProvider";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -22,14 +23,16 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
-          <ModalProvider />
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
             storageKey="strife-theme"
           >
-            {children}
+            <SocketProvider>
+              <ModalProvider />
+              {children}
+            </SocketProvider>
           </ThemeProvider>
         </body>
       </html>
