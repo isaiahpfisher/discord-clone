@@ -1,15 +1,14 @@
 "use client";
 
-import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-
 import axios from "axios";
 import qs from "query-string";
-
-import { Form, FormControl, FormField, FormItem } from "../ui/form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus, Smile } from "lucide-react";
-import { Input } from "../ui/input";
+
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 interface ChatInputProps {
   apiUrl: string;
@@ -40,8 +39,8 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
       });
 
       await axios.post(url, values);
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -58,7 +57,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
                   <button
                     type="button"
                     onClick={() => {}}
-                    className="absolute left-8 top-7 flex size-[24px] items-center justify-center rounded-full bg-zinc-500 p-1 transition hover:bg-zinc-600 dark:bg-zinc-400 dark:hover:bg-zinc-300"
+                    className="absolute left-8 top-7 flex h-[24px] w-[24px] items-center justify-center rounded-full bg-zinc-500 p-1 transition hover:bg-zinc-600 dark:bg-zinc-400 dark:hover:bg-zinc-300"
                   >
                     <Plus className="text-white dark:text-[#313338]" />
                   </button>
