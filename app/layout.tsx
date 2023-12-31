@@ -13,6 +13,7 @@ const font = Open_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Strife",
   description: "Sow seeds of discord.",
+  icons: [{ url: "/logo.png", href: "/logo.png" }],
 };
 
 export default function RootLayout({
