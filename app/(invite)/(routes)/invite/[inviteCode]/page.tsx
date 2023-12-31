@@ -1,8 +1,9 @@
-import { redirectToSignIn } from "@clerk/nextjs";
+import { currentUser, redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
+import { initialProfile } from "@/lib/initial-profile";
 
 interface InviteCodePageProps {
   params: {
@@ -11,14 +12,21 @@ interface InviteCodePageProps {
 }
 
 const InviteCodePage = async ({ params }: InviteCodePageProps) => {
+  const user = await currentUser();
+
+  if (!user) {
+    return redirectToSignIn();
+  }
+
   const profile = await currentProfile();
+
+  if (!profile) {
+    await initialProfile();
+    return redirect(`/invite/${params.inviteCode}`);
+  }
 
   if (!params.inviteCode) {
     return redirect("/");
-  }
-
-  if (!profile) {
-    return redirect("/sign-in");
   }
 
   const existingServer = await db.server.findFirst({
